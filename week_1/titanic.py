@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 filename = ['sex.txt',
             'survived.txt',
@@ -40,12 +41,23 @@ def get_first_class_percentage(dataframe, _filename):
     write_to(_filename, value=[firstclass])
 
 
+# Get average and median age
+def get_age_params(dataframe, _filename):
+    age = dataframe['Age']
+    mean_age = round(age.mean(), 2)
+    med_age = round(age.median(), 2)
+    write_to(_filename, value=[mean_age, med_age])
+    print("%.2f %.2f\n" % (mean_age, med_age))
+
+
 def write_to(_filename, value):
     file = open(_filename, 'w')
     for v in value:
         file.write(str(v) + ' ')
     file.close()
 
-count_sex(data, filename[0])
-survived_in_percents(data, filename[1])
-get_first_class_percentage(data, filename[2])
+
+get_age_params(data, filename[3])
+#count_sex(data, filename[0])
+#survived_in_percents(data, filename[1])
+#get_first_class_percentage(data, filename[2])
